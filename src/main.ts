@@ -3,6 +3,7 @@ import { delay } from "./core/time.ts";
 import { FIXED_DELTA_TIME_IN_MS } from "./core/constants.ts";
 import { Simulation } from "./custom/simulation.ts";
 import { Particle } from "./custom/particle.ts";
+import { Vector2 } from "./core/vector2.ts";
 
 const canvas = initCanvas({
   canvasQuerySelector: '#canvas'
@@ -14,7 +15,10 @@ if (!ctx) {
 
 const simulation = new Simulation({
   items: [
-    new Particle({})
+    new Particle({
+      forces: new Vector2(0.1, 0.05),
+      mass: 10
+    })
   ]
 })
 
@@ -29,6 +33,7 @@ function render(ctx: CanvasRenderingContext2D) {
 async function updateLoop() {
   update();
   await delay(FIXED_DELTA_TIME_IN_MS);
+  updateLoop().then(() => null);
 }
 
 function renderLoop(ctx: CanvasRenderingContext2D) {
