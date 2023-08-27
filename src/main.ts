@@ -18,7 +18,12 @@ const simulation = new Simulation({
     new Particle({
       forces: new Vector2(0.1, 0.05),
       mass: 10
-    })
+    }),
+    new Particle({
+      position: new Vector2(450, 0),
+      forces: new Vector2(-0.1, 0.05),
+      mass: 5
+    }),
   ]
 })
 

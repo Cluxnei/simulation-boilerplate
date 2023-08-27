@@ -1,14 +1,12 @@
-import { ISimulatedItem } from "../core/simulation.ts";
+import { ISimulatedItem, SimulationRef } from "../core/simulation.ts";
 
 export interface ISimulationProps {
   items: ISimulatedItem[];
 }
 
-export class Simulation {
-  items: ISimulatedItem[];
-
+export class Simulation extends SimulationRef {
   constructor(props: ISimulationProps) {
-    this.items = props.items;
+    super(props);
   }
 
   update(deltaTime?: number) {
